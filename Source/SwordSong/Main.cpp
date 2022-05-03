@@ -1,32 +1,21 @@
 #include "SwordSong/SwordSong.hpp"
-#include "Phantasia/Window.hpp"
+#include "SwordSong/SwordSongGame.hpp"
+#include "Phantasia/Engine.hpp"
 
 #include <iostream>
 #include <memory>
 
+using namespace Phantasia;
+using namespace SwordSong;
+
+Game* createGame() {
+	return new SwordSongGame();
+}
+
 int main(int argc, char **argv) {
-	std::unique_ptr<Phantasia::Window> window = std::make_unique<Phantasia::Window>();
-	window->Initialize();
-	window->Open();
-	window->MakeCurrent();
-	
-	while (!window->ShouldClose()) {
-		window->Clear();
-		window->ProcessInput();
+	std::unique_ptr<Engine> engine = std::make_unique<Engine>(createGame);
 
-		double delta = window->GetDelta();
-		static double accumulator = 0;
-		accumulator += delta;
+	engine->Run();
 
-		while (accumulator >= 20) {
-			//Update();
-			accumulator -= 20;
-		}
-
-
-		//Render(accumulator / 20);
-
-		window->SwapBuffers();
-	}
     return 0;
 }

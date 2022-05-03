@@ -15,6 +15,10 @@ void SwordSongGame::Update() {
 
 }
 
-void SwordSongGame::Render() {
+void SwordSongGame::Render(double delta) {
 
+}
+
+bool SwordSongGame::HandleKey(Key key) {
+	return false;
 }

@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Phantasia/Phantasia.hpp"
+#include "Phantasia/KeyEvent.hpp"
 
 namespace Phantasia {
-    class Phantasia_API Game {
+    class Game : public virtual KeyListener {
     public:
         Game();
         virtual ~Game();
 
         virtual void Update() = 0;
-        virtual void Render() = 0;
+        virtual void Render(double delta) = 0;
     private:
     };
 }

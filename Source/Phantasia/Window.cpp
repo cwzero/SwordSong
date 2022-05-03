@@ -34,10 +34,16 @@ GLFWwindow* openWindow() {
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	int w = (int)(mode->width * 0.8);
-	w -= (w % 16);
+	if ((w % 16) != 0) {
+		w += (16 - (w % 16));
+	}
 
 	int h = (int)(mode->height * 0.8);
-	h -= (h % 16);
+	if ((h % 16) != 0) {
+		h += (16 - (h % 16));
+	}
+
+	// TODO: create surface
 
 	GLFWwindow* window = glfwCreateWindow(w, h, "Sword Song", NULL, NULL);
 	if (!window)
@@ -76,8 +82,10 @@ void Window::Open() {
 void Window::handleKeyPress(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	if (action == GLFW_PRESS || action == GLFW_REPEAT) {
-		if (action == GLFW_PRESS && key == GLFW_KEY_ESCAPE) {
-			glfwSetWindowShouldClose(window, GLFW_TRUE);
+		if (!listener || !listener->HandleKey(getKey(window, key, scancode, action, mods))) {
+			if (action == GLFW_PRESS && key == GLFW_KEY_ESCAPE) {
+				glfwSetWindowShouldClose(window, GLFW_TRUE);
+			}
 		}
 	}
 }

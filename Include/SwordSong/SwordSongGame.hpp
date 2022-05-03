@@ -4,13 +4,15 @@
 #include "SwordSong/SwordSong.hpp"
 
 namespace SwordSong {
-    class SwordSong_API SwordSongGame : public virtual Phantasia::Game {
+    class SwordSongGame : public virtual Phantasia::Game {
     public:
         SwordSongGame();
         virtual ~SwordSongGame() override;
 
         virtual void Update() override;
-        virtual void Render() override;
+        virtual void Render(double delta) override;
+
+        virtual bool HandleKey(Phantasia::Key key) override;
     private:
     };
 }

@@ -1,4 +1,5 @@
-add_library(SwordSong STATIC SwordSong.cpp
+add_library(SwordSong STATIC 
+    SwordSong.cpp
     SwordSongGame.cpp)
 target_include_directories(SwordSong PUBLIC "${PROJECT_SOURCE_DIR}/Include")
 target_link_libraries(SwordSong PUBLIC Phantasia)

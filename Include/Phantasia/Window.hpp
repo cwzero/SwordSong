@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Phantasia/Phantasia.hpp"
+#include "Phantasia/KeyEvent.hpp"
 
 struct GLFWwindow;
 
@@ -23,8 +23,14 @@ namespace Phantasia {
 		void GetSize(int *width, int *height);
 
 		bool ShouldClose();
+
+		inline void SetListener(KeyListener* listener) {
+			this->listener = listener;
+		}
     private:
 		void handleKeyPress(GLFWwindow* window, int key, int scancode, int action, int mods);
         struct GLFWwindow* window;
+
+		KeyListener* listener;
     };
 }
