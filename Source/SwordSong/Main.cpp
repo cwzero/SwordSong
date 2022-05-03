@@ -8,6 +8,7 @@ int main(int argc, char **argv) {
 	std::unique_ptr<Phantasia::Window> window = std::make_unique<Phantasia::Window>();
 	window->Initialize();
 	window->Open();
+	window->MakeCurrent();
 	
 	while (!window->ShouldClose()) {
 		window->Clear();
@@ -21,6 +22,7 @@ int main(int argc, char **argv) {
 			//Update();
 			accumulator -= 20;
 		}
+
 
 		//Render(accumulator / 20);
 
