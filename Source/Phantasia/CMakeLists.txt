@@ -1,8 +1,8 @@
 add_library(Phantasia STATIC
     Phantasia.cpp
     Engine.cpp
-    Game.cpp
     KeyEvent.cpp
+    TileGrid2D.cpp
     Window.cpp)
 target_include_directories(Phantasia PUBLIC "${PROJECT_SOURCE_DIR}/Include")
 

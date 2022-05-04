@@ -4,10 +4,10 @@
 #include "SwordSong/SwordSong.hpp"
 
 namespace SwordSong {
-    class SwordSongGame : public virtual Phantasia::Game {
+    class SwordSongGame : public Phantasia::Game {
     public:
         SwordSongGame();
-        virtual ~SwordSongGame() override;
+        ~SwordSongGame();
 
         virtual void Update() override;
         virtual void Render(double delta) override;

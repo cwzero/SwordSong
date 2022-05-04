@@ -7,7 +7,7 @@ namespace Phantasia {
     class Game;
     class Window;
     typedef Game* (*GameConstructor)();
-    class Engine : public virtual KeyListener {
+    class Engine : KeyListener {
     public:
         Engine(GameConstructor gameCon);
         ~Engine();

@@ -3,11 +3,8 @@
 #include "Phantasia/KeyEvent.hpp"
 
 namespace Phantasia {
-    class Game : public virtual KeyListener {
+    class Game : public KeyListener {
     public:
-        Game();
-        virtual ~Game();
-
         virtual void Update() = 0;
         virtual void Render(double delta) = 0;
     private:
