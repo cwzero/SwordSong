@@ -1,4 +1,7 @@
 #include "Phantasia/Window.hpp"
+#include "Phantasia/TileSet.hpp"
+#include "Phantasia/GLSurface.hpp"
+#include "Phantasia/TileGrid2D.hpp"
 
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
@@ -43,8 +46,6 @@ GLFWwindow* openWindow() {
 		h += (16 - (h % 16));
 	}
 
-	// TODO: create surface
-
 	GLFWwindow* window = glfwCreateWindow(w, h, "Sword Song", NULL, NULL);
 	if (!window)
 	{
@@ -52,11 +53,19 @@ GLFWwindow* openWindow() {
 		exit(EXIT_FAILURE);
 	}
 
+	glfwMakeContextCurrent(window);
+
+	int version = gladLoadGL(glfwGetProcAddress);
+	if (version == 0) {
+		printf("Failed to initialize OpenGL context\n");
+		exit(1);
+	}
+
     return window;
 }
 
 Window::Window() {
-
+	
 }
 
 Window::~Window() {
@@ -69,6 +78,11 @@ void Window::Initialize() {
 
 void Window::Open() {
     window = openWindow();
+
+	int width, height;
+	GetSize(&width, &height);
+	surface = std::make_unique<GLSurface>(width, height);
+	grid = std::make_unique<TileGrid2D>(width / 16, height / 16);
 
     glfwSetWindowUserPointer(window, this);
 
@@ -98,11 +112,6 @@ void Window::Shutdown() {
 
 void Window::MakeCurrent() {
 	glfwMakeContextCurrent(window);
-    int version = gladLoadGL(glfwGetProcAddress);
-    if (version == 0) {
-        printf("Failed to initialize OpenGL context\n");
-        exit(1);
-    }
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -124,6 +133,10 @@ double Window::GetDelta() {
 	double delta = (currentTime - lastTime) * 1000;
 	lastTime = currentTime;
 	return delta;
+}
+
+void Window::DrawGrid() {
+	grid->Draw(GetSurface(), {0, 0});
 }
 
 void Window::SwapBuffers() {

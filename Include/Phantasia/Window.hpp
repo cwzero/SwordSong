@@ -1,10 +1,13 @@
 #pragma once
 
+#include <memory>
 #include "Phantasia/KeyEvent.hpp"
 
 struct GLFWwindow;
 
 namespace Phantasia {
+	class GLSurface;
+	class TileGrid2D;
     class Window {
     public:
         Window();
@@ -20,6 +23,7 @@ namespace Phantasia {
 		void SwapBuffers();
 		void ProcessInput();
 
+		void DrawGrid();
 		void GetSize(int *width, int *height);
 
 		bool ShouldClose();
@@ -27,10 +31,20 @@ namespace Phantasia {
 		inline void SetListener(KeyListener* listener) {
 			this->listener = listener;
 		}
-    private:
-		void handleKeyPress(GLFWwindow* window, int key, int scancode, int action, int mods);
-        struct GLFWwindow* window;
 
+		inline GLSurface& GetSurface() {
+			return *surface;
+		}
+
+		inline TileGrid2D& GetGrid() {
+			return *grid;
+		}
+    private:
+        struct GLFWwindow* window;
 		KeyListener* listener;
+		std::unique_ptr<GLSurface> surface;
+		std::unique_ptr<TileGrid2D> grid;
+
+		void handleKeyPress(GLFWwindow* window, int key, int scancode, int action, int mods);
     };
 }

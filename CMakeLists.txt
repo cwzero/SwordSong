@@ -9,3 +9,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_subdirectory(Source)
 add_subdirectory(Lib)
+
+configure_file(${CMAKE_SOURCE_DIR}/Template/Include/Phantasia/Build.hpp.in ${CMAKE_SOURCE_DIR}/Include/Phantasia/Build.hpp)

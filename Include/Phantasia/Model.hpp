@@ -1,6 +1,6 @@
 #pragma once
 
-namespace SwordSong {
+namespace Phantasia {
 	class Model {
 	public:
 		Model();

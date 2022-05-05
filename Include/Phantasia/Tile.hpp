@@ -7,8 +7,8 @@ namespace Phantasia {
         float r, g, b;
     } Color;
 
-    typedef struct Tile : Point2D {
-        
+    typedef struct Tile {
+        int tx, ty;
     } Tile;
 
     typedef struct ColoredTile : Tile {

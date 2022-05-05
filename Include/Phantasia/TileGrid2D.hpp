@@ -11,25 +11,25 @@ namespace Phantasia {
         TileGrid2D(int width, int height);
         ~TileGrid2D();
 
-        virtual inline int GetWidth() override {
+        virtual inline int GetWidth() const override {
             return width;
         }
 
-        virtual inline int GetHeight() override {
+        virtual inline int GetHeight() const override {
             return height;
         }
 
-        virtual inline void GetSize(int* width, int* height) override {
+        virtual inline void GetSize(int* width, int* height) const override {
             *width = this->width;
             *height = this->height;
         }
 
-        virtual Size2D GetSize() override {
+        virtual Size2D GetSize() const override {
             return {width, height};
         }
 
-        virtual void DrawTile(ColoredTile tile, int x, int y) override;
-        virtual void DrawTile(ColoredTile tile, Point2D loc) override;
+        virtual void DrawTile(ColoredTile* tile, int x, int y) override;
+        virtual void DrawTile(ColoredTile* tile, Point2D loc) override;
 
         virtual void Draw(Surface& surface, int offsetX, int offsetY) override;
         virtual void Draw(Surface& surface, Point2D offset) override;
@@ -38,6 +38,6 @@ namespace Phantasia {
         bool IsValid(Point2D loc);
         
         int width, height;
-        ColoredTile** grid;
+        ColoredTile*** grid;
     };
 }

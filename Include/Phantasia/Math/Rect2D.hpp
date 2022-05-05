@@ -2,12 +2,13 @@
 
 #include "Phantasia/Math/Point2D.hpp"
 #include "Phantasia/Math/Size2D.hpp"
+#include "Phantasia/Math/Container2D.hpp"
 
 namespace Phantasia {
-    class Rect2D {
+    class Rect2D : public Container2D {
     public:
-        Rect2D(int x, int y, int width, int height) : x(x), y(y), width(width), height(height) {}
-        Rect2D(Point2D location, Size2D size) : Rect2D(location.x, location.y, size.width, size.height) {}
+        Rect2D(int x, int y, int width, int height);
+        Rect2D(Point2D location, Size2D size);
 
         inline int GetWidth() const { return width; }
         inline int GetHeight() const { return height; }
@@ -24,6 +25,9 @@ namespace Phantasia {
             *y = this->y;
         }
         inline Point2D GetLocation() const { return {x, y}; }
+
+        virtual bool contains(int x, int y) override;
+        virtual bool contains(Point2D pos) override;
 
         const int x, y;
         const int width, height;

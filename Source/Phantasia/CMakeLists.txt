@@ -1,8 +1,13 @@
 add_library(Phantasia STATIC
     Phantasia.cpp
     Engine.cpp
+    GLSurface.cpp
     KeyEvent.cpp
+    Model.cpp
+    Rect2D.cpp
+    Shader.cpp
     TileGrid2D.cpp
+    TileSet.cpp
     Window.cpp)
 target_include_directories(Phantasia PUBLIC "${PROJECT_SOURCE_DIR}/Include")
 

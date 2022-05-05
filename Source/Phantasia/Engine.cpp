@@ -2,6 +2,8 @@
 #include "Phantasia/Game.hpp"
 #include "Phantasia/KeyEvent.hpp"
 #include "Phantasia/Window.hpp"
+#include "Phantasia/TileGrid2D.hpp"
+#include "Phantasia/GLSurface.hpp"
 
 using namespace Phantasia;
 
@@ -57,7 +59,8 @@ void Engine::Update() {
 }
 
 void Engine::Render(double delta) {
-	game->Render(delta);
+	game->Render(window->GetGrid(), delta);
+	window->DrawGrid();
 }
 
 bool Engine::HandleKey(Key key) {
