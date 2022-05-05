@@ -1,12 +1,11 @@
 #pragma once
 
-#include "Phantasia/Math/Point2D.hpp"
-#include "Phantasia/Math/Size2D.hpp"
-#include "Phantasia/Math/Container2D.hpp"
+#include "Phantasia/Math/TwoD/Point2D.hpp"
+#include "Phantasia/Math/TwoD/Size2D.hpp"
+#include "Phantasia/Math/TwoD/Container2D.hpp"
 
-namespace Phantasia {
-    class Rect2D : public Container2D {
-    public:
+namespace Phantasia::Math::TwoD {
+    struct Rect2D : public Container2D {
         Rect2D(int x, int y, int width, int height);
         Rect2D(Point2D location, Size2D size);
 

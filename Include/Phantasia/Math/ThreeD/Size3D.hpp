@@ -8,12 +8,6 @@ namespace Phantasia {
         inline int GetHeight() const { return height; }
         inline int GetDepth() const { return depth; }
 
-        inline void GetSize3D(int* width, int* height, int* depth) const {
-            *width = this->width;
-            *height = this->height;
-            *depth = this->depth;
-        }
-
         const int width, height, depth;
     };
 }

@@ -1,6 +1,6 @@
-#include "Phantasia/Math/Rect2D.hpp"
+#include "Phantasia/Math/TwoD/Rect2D.hpp"
 
-using namespace Phantasia;
+using namespace Phantasia::Math::TwoD;
 
 Rect2D::Rect2D(int x, int y, int width, int height) : x(x), y(y), width(width), height(height) {
 

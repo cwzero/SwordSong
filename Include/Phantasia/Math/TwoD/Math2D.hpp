@@ -2,6 +2,6 @@
 
 #include <cmath>
 
-namespace Phantasia {
+namespace Phantasia::Math::TwoD {
     
 }

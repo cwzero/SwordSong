@@ -1,11 +1,10 @@
 #pragma once
 
 #include <cmath>
-#include "Phantasia/Math/Point2D.hpp"
+#include "Phantasia/Math/TwoD/Point2D.hpp"
 
-namespace Phantasia {
-    class Line2D {
-    public:
+namespace Phantasia::Math::TwoD {
+    struct Line2D {
         Line2D(int x1, int y1, int x2, int y2) : x1(x1), y1(y1), x2(x2), y2(y2) {}
         Line2D(Point2D origin, Point2D destination) : Line2D(origin.x, origin.y, destination.x, destination.y) {}
 

@@ -1,8 +1,7 @@
 #pragma once
 
-namespace Phantasia {
-    class Point2D {
-    public:
+namespace Phantasia::Math::TwoD {
+    struct Point2D {
         Point2D(int x, int y) : x(x), y(y) {}
 
         inline int GetX() const { return x; }
