@@ -7,7 +7,7 @@ namespace Phantasia {
 
         inline int GetX() const { return x; }
         inline int GetY() const { return y; }
-        inline void GetPoint(int* x, int* y) const {
+        inline void GetPoint2D(int* x, int* y) const {
             *x = this->x;
             *y = this->y;
         }
