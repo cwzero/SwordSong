@@ -1,7 +1,7 @@
 #include "Phantasia/Build.hpp"
-#include "Phantasia/TileSet.hpp"
-#include "Phantasia/Model.hpp"
-#include "Phantasia/Shader.hpp"
+#include "Phantasia/Render/TileSet.hpp"
+#include "Phantasia/Render/Model.hpp"
+#include "Phantasia/Render/Shader.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb/stb_image.h"
@@ -11,7 +11,7 @@
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 
-using namespace Phantasia;
+using namespace Phantasia::Render;
 
 TileSet::TileSet(const char* fileName, int gridWidth, int gridHeight) {
 	this->fileName = fileName;
@@ -22,10 +22,10 @@ TileSet::TileSet(const char* fileName, int gridWidth, int gridHeight) {
 TileSet::~TileSet() {
 }
 
-void TileSet::Load() {
-	model->Initialize();
+void TileSet::load() {
+	model->initialize();
 
-	shader->Load((SourcePath + "/Resources/Shaders/shader.vs").c_str(), (SourcePath + "/Resources/Shaders/shader.fs").c_str());
+	shader->load((SourcePath + "/Resources/Shaders/shader.vs").c_str(), (SourcePath + "/Resources/Shaders/shader.fs").c_str());
 
 	int width, height, comp;
 	unsigned char* image = stbi_load((SourcePath + "/Resources/Textures/" + std::string(fileName)).c_str(), &width, &height, &comp, STBI_rgb_alpha);
@@ -61,18 +61,14 @@ void TileSet::Load() {
 	}
 }
 
-void TileSet::Use() {
-
-}
-
-void TileSet::DrawTile(int tx, int ty, float r, float g, float b, float x, float y) {
+void TileSet::drawTile(int tx, int ty, float r, float g, float b, float x, float y) {
 	glBindTexture(GL_TEXTURE_2D, texture[tx][ty]);
-	shader->Use();
+	shader->use();
 
 	float xu = (1.0f / 16.0f);
 	float yu = (1.0f / 16.0f);
 
-	shader->SetVec3("color", r, g, b);
-	shader->SetPosition((x * xu), (y * yu));
-	model->Render();
+	shader->setVec3("color", r, g, b);
+	shader->setPosition((x * xu), (y * yu));
+	model->render();
 }

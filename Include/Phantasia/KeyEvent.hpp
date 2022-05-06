@@ -11,6 +11,6 @@ namespace Phantasia {
 
     class KeyListener {
     public:
-        virtual bool HandleKey(Key key) = 0;
+        virtual bool handleKey(Key key) = 0;
     };
 }

@@ -1,4 +1,4 @@
-#include "Phantasia/Shader.hpp"
+#include "Phantasia/Render/Shader.hpp"
 
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
@@ -17,7 +17,7 @@
 #include <glm/ext/matrix_clip_space.hpp> // glm::perspective
 #include <glm/ext/scalar_constants.hpp> // glm::pi
 
-using namespace Phantasia;
+using namespace Phantasia::Render;
 
 Shader::Shader(float wr, float hr) {
 	this->wr = wr;
@@ -28,7 +28,7 @@ Shader::~Shader() {
 
 }
 
-void Shader::Load(const char* vertexPath, const char* fragmentPath) {
+void Shader::load(const char* vertexPath, const char* fragmentPath) {
 	// 1. retrieve the vertex/fragment source code from filePath
 	std::string vertexCode;
 	std::string fragmentCode;
@@ -107,39 +107,39 @@ void Shader::Load(const char* vertexPath, const char* fragmentPath) {
 	glDeleteShader(fragment);
 }
 
-void Shader::Use() {
+void Shader::use() {
 	glUseProgram(ID);
 }
 
-void Shader::SetBool(const std::string& name, bool value) const
+void Shader::setBool(const std::string& name, bool value) const
 {
 	glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
 }
-void Shader::SetInt(const std::string& name, int value) const
+void Shader::setInt(const std::string& name, int value) const
 {
 	glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
 }
-void Shader::SetFloat(const std::string& name, float value) const
+void Shader::setFloat(const std::string& name, float value) const
 {
 	glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
 
-void Shader::SetVec4(const std::string& name, float x, float y, float z, float a) const
+void Shader::setVec4(const std::string& name, float x, float y, float z, float a) const
 {
 	glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, a);
 }
 
-void Shader::SetVec3(const std::string& name, float x, float y, float z) const
+void Shader::setVec3(const std::string& name, float x, float y, float z) const
 {
 	glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z);
 }
 
-void Shader::SetVec2(const std::string& name, float x, float y) const
+void Shader::setVec2(const std::string& name, float x, float y) const
 {
 	glUniform2f(glGetUniformLocation(ID, name.c_str()), x, y);
 }
 
-void Shader::SetPosition(float x, float y) const
+void Shader::setPosition(float x, float y) const
 {
 	GLuint modelMatIdx = glGetUniformLocation(ID, "modelMat");
 	GLuint viewMatIdx = glGetUniformLocation(ID, "viewMat");

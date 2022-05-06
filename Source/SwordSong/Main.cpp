@@ -15,7 +15,7 @@ Game* createGame() {
 int main(int argc, char **argv) {
 	std::unique_ptr<Engine> engine = std::make_unique<Engine>(createGame);
 
-	engine->Run();
+	engine->run();
 
     return 0;
 }

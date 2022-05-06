@@ -1,11 +1,11 @@
 #include "Phantasia/Engine.hpp"
 #include "Phantasia/Game.hpp"
 #include "Phantasia/KeyEvent.hpp"
-#include "Phantasia/Window.hpp"
-#include "Phantasia/TileGrid2D.hpp"
-#include "Phantasia/GLSurface.hpp"
+#include "Phantasia/Render/Window.hpp"
+#include "Phantasia/Render/GLSurface.hpp"
 
 using namespace Phantasia;
+using namespace Phantasia::Render;
 
 Engine::Engine(GameConstructor gameCon) {
 	this->game = std::unique_ptr<Game>{gameCon()};
@@ -16,53 +16,53 @@ Engine::~Engine() {
 
 }
 
-void Engine::Initialize() {
-	window->SetListener(this);
-	window->Initialize();
-    window->Open();
-	window->MakeCurrent();
+void Engine::initialize() {
+	window->setListener(this);
+	window->initialize();
+    window->open();
+	window->makeCurrent();
 }
 
-void Engine::Shutdown() {
-    window->Shutdown();
+void Engine::shutdown() {
+    window->shutdown();
 }
 
-void Engine::Run() {
-	Initialize();
+void Engine::run() {
+	initialize();
 
-	while (Loop()) {}
+	while (loop()) {}
 
-	Shutdown();
+	shutdown();
 }
 
-bool Engine::Loop() {
-	window->Clear();
-	window->ProcessInput();
+bool Engine::loop() {
+	window->clear();
+	window->processInput();
 
-	double delta = window->GetDelta();
+	double delta = window->getDelta();
 	static double accumulator = 0;
 	accumulator += delta;
 
 	while (accumulator >= 20) {
-		Update();
+		update();
 		accumulator -= 20;
 	}
 
-	Render(accumulator / 20);
+	render(accumulator / 20);
 
-	window->SwapBuffers();
-	return !window->ShouldClose();
+	window->swapBuffers();
+	return !window->shouldClose();
 }
 
-void Engine::Update() {
-	game->Update();
+void Engine::update() {
+	game->update();
 }
 
-void Engine::Render(double delta) {
-	game->Render(window->GetGrid(), delta);
-	window->DrawGrid();
+void Engine::render(double delta) {
+	game->render(delta);
+	window->drawGrid();
 }
 
-bool Engine::HandleKey(Key key) {
-	return game->HandleKey(key);
+bool Engine::handleKey(Key key) {
+	return game->handleKey(key);
 }

@@ -1,4 +1,4 @@
-#include "Phantasia/Model.hpp"
+#include "Phantasia/Render/Model.hpp"
 
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
@@ -7,7 +7,7 @@
 
 #define RATIO 32.0f
 
-using namespace Phantasia;
+using namespace Phantasia::Render;
 
 Model::Model() {
 }
@@ -16,7 +16,7 @@ Model::~Model() {
 
 }
 
-void Model::Initialize() {
+void Model::initialize() {
 	float a = 2.0f / RATIO, b = 1.0f;
 
 	float vertices[] = {
@@ -55,7 +55,7 @@ void Model::Initialize() {
 	glBindVertexArray(0);
 }
 
-void Model::Render() {
+void Model::render() {
 	glBegin(GL_ARRAY_BUFFER);
 
 	glBindVertexArray(VAO);

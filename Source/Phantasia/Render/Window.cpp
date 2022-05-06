@@ -1,14 +1,13 @@
-#include "Phantasia/Window.hpp"
-#include "Phantasia/TileSet.hpp"
-#include "Phantasia/GLSurface.hpp"
-#include "Phantasia/TileGrid2D.hpp"
+#include "Phantasia/Render/Window.hpp"
+#include "Phantasia/Render/TileSet.hpp"
+#include "Phantasia/Render/GLSurface.hpp"
 
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 
 #include <iostream>
 
-using namespace Phantasia;
+using namespace Phantasia::Render;
 
 void glErrorCallback(int err, const char* msg) {
 	std::cerr << "Error: " << msg << std::endl;
@@ -72,17 +71,17 @@ Window::~Window() {
 
 }
 
-void Window::Initialize() {
+void Window::initialize() {
     init();
 }
 
-void Window::Open() {
+void Window::open() {
     window = openWindow();
 
 	int width, height;
-	GetSize(&width, &height);
+	getSize(&width, &height);
 	surface = std::make_unique<GLSurface>(width, height);
-	grid = std::make_unique<TileGrid2D>(width / 16, height / 16);
+	//grid = std::make_unique<TileGrid2D>(width / 16, height / 16);
 
     glfwSetWindowUserPointer(window, this);
 
@@ -96,7 +95,7 @@ void Window::Open() {
 void Window::handleKeyPress(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	if (action == GLFW_PRESS || action == GLFW_REPEAT) {
-		if (!listener || !listener->HandleKey(getKey(window, key, scancode, action, mods))) {
+		if (!listener || !listener->handleKey(getKey(window, key, scancode, action, mods))) {
 			if (action == GLFW_PRESS && key == GLFW_KEY_ESCAPE) {
 				glfwSetWindowShouldClose(window, GLFW_TRUE);
 			}
@@ -105,12 +104,12 @@ void Window::handleKeyPress(GLFWwindow* window, int key, int scancode, int actio
 }
 
 
-void Window::Shutdown() {
+void Window::shutdown() {
 	glfwDestroyWindow(window);
 	glfwTerminate();
 }
 
-void Window::MakeCurrent() {
+void Window::makeCurrent() {
 	glfwMakeContextCurrent(window);
 
 	glEnable(GL_BLEND);
@@ -118,16 +117,16 @@ void Window::MakeCurrent() {
 	glfwSwapInterval(1);
 
 	int width, height;
-	GetSize(&width, &height);
+	getSize(&width, &height);
 	glViewport(0, 0, width, height);
 }
 
-void Window::Clear() {
+void Window::clear() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-double Window::GetDelta() {
+double Window::getDelta() {
 	static double lastTime = 0;
 	double currentTime = glfwGetTime();
 	double delta = (currentTime - lastTime) * 1000;
@@ -135,22 +134,22 @@ double Window::GetDelta() {
 	return delta;
 }
 
-void Window::DrawGrid() {
-	grid->Draw(GetSurface(), {0, 0});
+void Window::drawGrid() {
+	//grid->Draw(GetSurface(), {0, 0});
 }
 
-void Window::SwapBuffers() {
+void Window::swapBuffers() {
 	glfwSwapBuffers(window);
 }
 
-void Window::ProcessInput() {
+void Window::processInput() {
 	glfwPollEvents();
 }
 
-bool Window::ShouldClose() {
+bool Window::shouldClose() {
 	return glfwWindowShouldClose(window);
 }
 
-void Window::GetSize(int* width, int* height) {
+void Window::getSize(int* width, int* height) {
 	glfwGetWindowSize(window, width, height);
 }

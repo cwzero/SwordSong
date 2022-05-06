@@ -1,13 +1,13 @@
 #pragma once
 
-namespace Phantasia {
+namespace Phantasia::Render {
 	class Model {
 	public:
 		Model();
 		~Model();
 
-		void Initialize();
-		void Render();
+		void initialize();
+		void render();
 	private:
 		float width, height;
 		unsigned int VBO;

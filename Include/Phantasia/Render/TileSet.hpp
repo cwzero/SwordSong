@@ -1,9 +1,9 @@
 #pragma once
 
 #include <memory>
-#include "Phantasia/Tile.hpp"
+#include "Phantasia/Render/Tile.hpp"
 
-namespace Phantasia {
+namespace Phantasia::Render {
 	class Model;
 	class Shader;
 
@@ -12,10 +12,9 @@ namespace Phantasia {
 		TileSet(const char* fileName, int gridWidth, int gridHeight);
 		~TileSet();
 
-		void Load();
-		void Use();
+		void load();
 
-		void DrawTile(int tx, int ty, float r, float g, float b, float x, float y);
+		void drawTile(int tx, int ty, float r, float g, float b, float x, float y);
 
 		unsigned int texture[16][16];
 	private:

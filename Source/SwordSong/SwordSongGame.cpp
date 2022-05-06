@@ -1,6 +1,4 @@
 #include "SwordSong/SwordSongGame.hpp"
-#include "Phantasia/Surface.hpp"
-#include "Phantasia/TileGrid2D.hpp"
 
 using namespace Phantasia;
 using namespace SwordSong;
@@ -13,15 +11,14 @@ SwordSongGame::~SwordSongGame() {
 
 }
 
-void SwordSongGame::Update() {
+void SwordSongGame::update() {
 
 }
 
-void SwordSongGame::Render(TileGrid2D& grid, double delta) {
-	auto tile = new ColoredTile{0, 4, {1, 1, 1}};
-	grid.DrawTile(tile, {0, 0});
+void SwordSongGame::render(double delta) {
+	
 }
 
-bool SwordSongGame::HandleKey(Key key) {
+bool SwordSongGame::handleKey(Key key) {
 	return false;
 }

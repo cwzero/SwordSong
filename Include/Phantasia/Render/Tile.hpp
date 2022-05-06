@@ -1,14 +1,12 @@
 #pragma once
 
-#include "Phantasia/Math.hpp"
-
-namespace Phantasia {
+namespace Phantasia::Render {
     typedef struct Color {
         float r, g, b;
     } Color;
 
     typedef struct Tile {
-        int tx, ty;
+        int x, y;
     } Tile;
 
     typedef struct ColoredTile : Tile {

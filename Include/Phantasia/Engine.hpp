@@ -3,27 +3,30 @@
 #include "Phantasia/KeyEvent.hpp"
 #include <memory>
 
+
 namespace Phantasia {
+    namespace Render {
+        class Window;
+    }
     class Game;
-    class Window;
     typedef Game* (*GameConstructor)();
-    class Engine : KeyListener {
+    class Engine : public KeyListener {
     public:
         Engine(GameConstructor gameCon);
         ~Engine();
         
-        void Initialize();
-        void Shutdown();
+        void initialize();
+        void shutdown();
 
-		void Run();
-		bool Loop();
+		void run();
+		bool loop();
 
-		void Update();
-		void Render(double delta);
+		void update();
+		void render(double delta);
 
-        virtual bool HandleKey(Key key) override;
+        virtual bool handleKey(Key key) override;
     private:
         std::unique_ptr<Game> game;
-        std::unique_ptr<Window> window;
+        std::unique_ptr<Render::Window> window;
     };
 }
