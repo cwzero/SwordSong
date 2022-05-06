@@ -10,7 +10,7 @@ namespace Phantasia::Render {
     public:
         GLSurface(int width, int height);
 
-        virtual void drawTile(ColoredTile* tile, int x, int y) override;
+        virtual void drawTile(ColoredTile& tile, int x, int y) override;
     private:
         std::unique_ptr<TileSet> tileSet;
     };

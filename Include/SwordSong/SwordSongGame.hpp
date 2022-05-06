@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Phantasia/Game.hpp"
+#include "Phantasia/GameContext.hpp"
 #include "SwordSong/SwordSong.hpp"
 
 namespace SwordSong {
@@ -9,8 +10,8 @@ namespace SwordSong {
         SwordSongGame();
         ~SwordSongGame();
 
-        virtual void update() override;
-        virtual void render(double delta) override;
+        virtual void update(Phantasia::GameContext& context) override;
+        virtual void render(Phantasia::GameContext& context, double delta) override;
 
         virtual bool handleKey(Phantasia::Key key) override;
     private:

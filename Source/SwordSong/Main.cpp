@@ -1,6 +1,7 @@
 #include "SwordSong/SwordSong.hpp"
 #include "SwordSong/SwordSongGame.hpp"
 #include "Phantasia/Engine.hpp"
+#include "Phantasia/GameContext.hpp"
 
 #include <iostream>
 #include <memory>
@@ -12,10 +13,14 @@ Game* createGame() {
 	return new SwordSongGame();
 }
 
-int main(int argc, char **argv) {
-	std::unique_ptr<Engine> engine = std::make_unique<Engine>(createGame);
+Engine* createEngine(GameContext* context, GameConstructor gc) {
+	return new Engine(context, gc);
+}
 
-	engine->run();
+int main(int argc, char **argv) {
+	std::unique_ptr<GameContext> gc = std::make_unique<GameContext>(createEngine, createGame);
+
+	gc->run();
 
     return 0;
 }

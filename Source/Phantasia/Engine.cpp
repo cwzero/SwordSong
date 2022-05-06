@@ -7,8 +7,8 @@
 using namespace Phantasia;
 using namespace Phantasia::Render;
 
-Engine::Engine(GameConstructor gameCon) {
-	this->game = std::unique_ptr<Game>{gameCon()};
+Engine::Engine(GameContext* context, GameConstructor gc) : context(context) {
+	this->game = std::unique_ptr<Game>{gc()};
 	this->window = std::make_unique<Window>();
 }
 
@@ -16,15 +16,23 @@ Engine::~Engine() {
 
 }
 
+Game& Engine::getGame() {
+	return *game;
+}
+
+Window& Engine::getWindow() {
+	return *window;
+}
+
 void Engine::initialize() {
-	window->setListener(this);
-	window->initialize();
-    window->open();
-	window->makeCurrent();
+	getWindow().setListener(this);
+	getWindow().initialize();
+    getWindow().open();
+	getWindow().makeCurrent();
 }
 
 void Engine::shutdown() {
-    window->shutdown();
+    getWindow().shutdown();
 }
 
 void Engine::run() {
@@ -36,10 +44,10 @@ void Engine::run() {
 }
 
 bool Engine::loop() {
-	window->clear();
-	window->processInput();
+	getWindow().clear();
+	getWindow().processInput();
 
-	double delta = window->getDelta();
+	double delta = getWindow().getDelta();
 	static double accumulator = 0;
 	accumulator += delta;
 
@@ -50,19 +58,19 @@ bool Engine::loop() {
 
 	render(accumulator / 20);
 
-	window->swapBuffers();
-	return !window->shouldClose();
+	getWindow().swapBuffers();
+	return !getWindow().shouldClose();
 }
 
 void Engine::update() {
-	game->update();
+	getGame().update(*context);
 }
 
 void Engine::render(double delta) {
-	game->render(delta);
-	window->drawGrid();
+	getGame().render(*context, delta);
+	getWindow().drawGrid();
 }
 
 bool Engine::handleKey(Key key) {
-	return game->handleKey(key);
+	return getGame().handleKey(key);
 }

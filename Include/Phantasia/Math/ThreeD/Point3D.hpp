@@ -1,12 +1,13 @@
 #pragma once
 
 namespace Phantasia {
-    struct Point3D {
+    class Point3D {
+    public:
         Point3D(int x, int y, int z) : x(x), y(y), z(z) {}
 
-        inline int GetX() const { return x; }
-        inline int GetY() const { return y; }
-        inline int GetZ() const { return z; }
+        inline int getX() const { return x; }
+        inline int getY() const { return y; }
+        inline int getZ() const { return z; }
 
         const int x, y, z;
     };

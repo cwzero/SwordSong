@@ -1,15 +1,16 @@
 #pragma once
 
-namespace Phantasia::Math::TwoD {
-    struct Size2D {
-        Size2D(int width, int height) : width(width), height(height) {}
+#include "Phantasia/Math/TwoD/Container2D.hpp"
 
-        inline int GetWidth() const { return width; }
-        inline int GetHeight() const { return height; }
-        inline void GetSize(int* width, int* height) const {
-            *width = this->width;
-            *height = this->height;
-        }
+namespace Phantasia::Math::TwoD {
+    class Size2D : public Container2D {
+    public:
+        Size2D(int width, int height);
+
+        inline int getWidth() const { return width; }
+        inline int getHeight() const { return height; }
+
+        virtual bool contains(int x, int y) const override;
 
         const int width, height;
     };

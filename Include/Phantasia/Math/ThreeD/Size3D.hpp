@@ -1,12 +1,17 @@
 #pragma once
 
-namespace Phantasia {
-    struct Size3D {
-        Size3D(int width, int height, int depth) : width(width), height(height), depth(depth) {}
+#include "Phantasia/Math/ThreeD/Container3D.hpp"
 
-        inline int GetWidth() const { return width; }
-        inline int GetHeight() const { return height; }
-        inline int GetDepth() const { return depth; }
+namespace Phantasia::Math::ThreeD {
+    class Size3D : public Container3D {
+    public:
+        Size3D(int width, int height, int depth);
+
+        inline int getWidth() const { return width; }
+        inline int getHeight() const { return height; }
+        inline int getDepth() const { return depth; }
+
+        virtual bool contains(int x, int y, int z) const override;
 
         const int width, height, depth;
     };

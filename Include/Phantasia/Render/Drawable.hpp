@@ -7,6 +7,5 @@ namespace Phantasia::Render {
     class Drawable {
     public:
         virtual void draw(Surface& surface, int offsetX, int offsetY) = 0;
-    private:
     };
 }

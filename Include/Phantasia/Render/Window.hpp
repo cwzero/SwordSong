@@ -2,11 +2,12 @@
 
 #include <memory>
 #include "Phantasia/KeyEvent.hpp"
+#include "Phantasia/Render/Surface.hpp"
+#include "Phantasia/Render/GLSurface.hpp"
 
 struct GLFWwindow;
 
 namespace Phantasia::Render {
-	class GLSurface;
     class Window {
     public:
         Window();
@@ -31,7 +32,7 @@ namespace Phantasia::Render {
 			this->listener = listener;
 		}
 
-		inline GLSurface& getSurface() {
+		inline Surface& getSurface() {
 			return *surface;
 		}
     private:

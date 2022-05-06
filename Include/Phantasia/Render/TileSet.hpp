@@ -14,7 +14,7 @@ namespace Phantasia::Render {
 
 		void load();
 
-		void drawTile(int tx, int ty, float r, float g, float b, float x, float y);
+		void drawTile(int tx, int ty, float r, float g, float b, int x, int y);
 
 		unsigned int texture[16][16];
 	private:

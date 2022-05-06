@@ -9,10 +9,11 @@ namespace Phantasia {
         class Window;
     }
     class Game;
+    class GameContext;
     typedef Game* (*GameConstructor)();
     class Engine : public KeyListener {
     public:
-        Engine(GameConstructor gameCon);
+        Engine(GameContext* context, GameConstructor gc);
         ~Engine();
         
         void initialize();
@@ -24,8 +25,12 @@ namespace Phantasia {
 		void update();
 		void render(double delta);
 
+        Game& getGame();
+        Render::Window& getWindow();
+
         virtual bool handleKey(Key key) override;
     private:
+        GameContext* context;
         std::unique_ptr<Game> game;
         std::unique_ptr<Render::Window> window;
     };

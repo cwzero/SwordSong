@@ -8,6 +8,8 @@ GLSurface::GLSurface(int width, int height) : Surface(width, height) {
     tileSet->load();
 }
 
-void GLSurface::drawTile(ColoredTile* tile, int x, int y) {
-    tileSet->drawTile(tile->x, tile->y, tile->color.r, tile->color.g, tile->color.b, x, y);
+void GLSurface::drawTile(ColoredTile& tile, int x, int y) {
+    if (contains(x, y)) {
+        tileSet->drawTile(tile.x, tile.y, tile.r, tile.g, tile.b, x, y);
+    }
 }

@@ -16,7 +16,7 @@ using namespace Phantasia::Render;
 TileSet::TileSet(const char* fileName, int gridWidth, int gridHeight) {
 	this->fileName = fileName;
 	model = std::make_unique<Model>();
-	shader = std::make_unique<Shader>(gridWidth, gridHeight);
+	shader = std::make_unique<Shader>((float)gridWidth, (float)gridHeight);
 }
 
 TileSet::~TileSet() {
@@ -61,7 +61,7 @@ void TileSet::load() {
 	}
 }
 
-void TileSet::drawTile(int tx, int ty, float r, float g, float b, float x, float y) {
+void TileSet::drawTile(int tx, int ty, float r, float g, float b, int x, int y) {
 	glBindTexture(GL_TEXTURE_2D, texture[tx][ty]);
 	shader->use();
 
@@ -69,6 +69,6 @@ void TileSet::drawTile(int tx, int ty, float r, float g, float b, float x, float
 	float yu = (1.0f / 16.0f);
 
 	shader->setVec3("color", r, g, b);
-	shader->setPosition((x * xu), (y * yu));
+	shader->setPosition(((float)x * xu), ((float)y * yu));
 	model->render();
 }
