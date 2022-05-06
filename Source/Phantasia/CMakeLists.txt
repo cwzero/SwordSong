@@ -8,6 +8,7 @@ target_include_directories(Phantasia PUBLIC "${PROJECT_SOURCE_DIR}/Include")
 add_subdirectory(Grid)
 add_subdirectory(Math)
 add_subdirectory(Render)
+add_subdirectory(World)
 
 find_package(OpenGL COMPONENTS OpenGL REQUIRED)
 
@@ -19,3 +20,4 @@ target_link_libraries(Phantasia PUBLIC glm)
 target_link_libraries(Phantasia PUBLIC Phantasia.Grid)
 target_link_libraries(Phantasia PUBLIC Phantasia.Math)
 target_link_libraries(Phantasia PUBLIC Phantasia.Render)
+target_link_libraries(Phantasia PUBLIC Phantasia.World)

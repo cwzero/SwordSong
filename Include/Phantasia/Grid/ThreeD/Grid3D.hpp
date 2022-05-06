@@ -6,18 +6,12 @@
 
 namespace Phantasia::Grid::ThreeD {
     template<typename T>
-    class Grid3D : public Math::ThreeD::Rect3D {
+    class Grid3D {
     public:
-        Grid3D(int width, int height, int depth);
-        Grid3D(int x, int y, int z, int width, int height, int depth);
-        Grid3D(Math::ThreeD::Point3D location, Math::ThreeD::Size3D size);
+        virtual T* get(int x, int y, int z) const = 0;
+        virtual inline T* get(Math::ThreeD::Point3D pos) const { return get(pos.x, pos.y, pos.z); }
 
-        T* get(int x, int y, int z) const;
-        inline T* get(Math::ThreeD::Point3D pos) const { return get(pos.x, pos.y, pos.z); }
-
-        T* set(int x, int y, int z, T& t);
-        inline T* set(Math::ThreeD::Point3D pos, T& t) const { return set(pos.x, pos.y, pos.z, t); }
-    private:
-        T**** grid;
+        virtual T* set(int x, int y, int z, T& t) = 0;
+        virtual inline T* set(Math::ThreeD::Point3D pos, T& t) { return set(pos.x, pos.y, pos.z, t); }
     };
 }

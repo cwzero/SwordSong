@@ -2,11 +2,11 @@
 
 #include <memory>
 
-#include "Phantasia/Render/Surface.hpp"
+#include "Phantasia/Render/BasicSurface2D.hpp"
 
 namespace Phantasia::Render {
     class TileSet;
-    class GLSurface : public Surface {
+    class GLSurface : public BasicSurface2D {
     public:
         GLSurface(int width, int height);
 

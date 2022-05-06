@@ -2,7 +2,7 @@
 
 #include <memory>
 #include "Phantasia/KeyEvent.hpp"
-#include "Phantasia/Render/Surface.hpp"
+#include "Phantasia/Render/Surface2D.hpp"
 #include "Phantasia/Render/GLSurface.hpp"
 
 struct GLFWwindow;
@@ -32,7 +32,7 @@ namespace Phantasia::Render {
 			this->listener = listener;
 		}
 
-		inline Surface& getSurface() {
+		inline Surface2D& getSurface() {
 			return *surface;
 		}
     private:

@@ -1,5 +1,5 @@
 #include "SwordSong/SwordSongGame.hpp"
-#include "Phantasia/Render/Surface.hpp"
+#include "Phantasia/Render/Surface2D.hpp"
 #include "Phantasia/Render/Window.hpp"
 
 using namespace Phantasia;

@@ -2,7 +2,7 @@ add_library(Phantasia.Render STATIC
     GLSurface.cpp
     Model.cpp
     Shader.cpp
-    Surface.cpp
+    BasicSurface2D.cpp
     TileSet.cpp
     Window.cpp)
 target_include_directories(Phantasia.Render PUBLIC "${PROJECT_SOURCE_DIR}/Include")

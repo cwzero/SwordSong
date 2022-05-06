@@ -3,7 +3,7 @@
 
 using namespace Phantasia::Render;
 
-GLSurface::GLSurface(int width, int height) : Surface(width, height) {
+GLSurface::GLSurface(int width, int height) : BasicSurface2D(width, height) {
     tileSet = std::make_unique<TileSet>("16x16-sb-ascii.png", width / 16, height / 16);
     tileSet->load();
 }
